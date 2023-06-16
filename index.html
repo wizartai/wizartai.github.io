@@ -1,1 +1,25 @@
 hhj
+<div class="output"></div>
+  <script src="cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+var url = 'https://thinkableai.000webhostapp.com/api.php';
+
+$.ajaxPrefilter(function(options) {
+    if (options.crossDomain && jQuery.support.cors) {
+        options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
+    }
+});
+
+$.ajax({
+    url: url,
+    dataType: 'html',
+    type: 'POST',
+    success: function (response, status) {
+        console.log('AJAX success: ' + response);
+        $('.output').html(response);
+    },
+    error: function (XMLHttpRequest, textStatus, errorThrown) {
+        console.log('AJAX error:' + textStatus);
+    }
+});
+</script>
