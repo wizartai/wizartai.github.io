@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("form").submit(function(event){
+    event.preventDefault(); // Prevent form submission
+
+    // AJAX request
+    $.ajax({
+      url: "http://wizartai.42web.io/api.php",
+      type: "POST",
+      data: $(this).serialize(), // Serialize form data
+      dataType: "html",
+      success: function(response){
+        // Handle the HTML response
+        $("#result").html(response);
+      }
+    });
+  });
+});
+</script>
+</head>
+<body>
+  <form action="http://example.com/your-php-script.php" method="post">
+    <!-- Your form fields go here -->
+    <input type="text" name="name" placeholder="Name">
+    <input type="email" name="email" placeholder="Email">
+    <button type="submit">Submit</button>
+  </form>
+  <div id="result"></div> <!-- Display response here -->
+</body>
+</html>
